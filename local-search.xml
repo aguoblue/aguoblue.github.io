@@ -4,13 +4,75 @@
   
   
   <entry>
+    <title>hot100-1</title>
+    <link href="/2024/07/26/hot100-1/"/>
+    <url>/2024/07/26/hot100-1/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a>1. 两数之和</h1><p><a href="https://leetcode.cn/problems/two-sum/description/">https://leetcode.cn/problems/two-sum/description/</a></p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol><li>使用哈希表存储数组中每个元素的值及其对应的索引。</li><li>在遍历数组的过程中，计算目标值与当前元素的差值。</li><li>检查哈希表中是否存在这个差值。<ul><li>如果存在，则找到了两个数，返回它们的索引。</li><li>如果不存在，将当前元素及其索引存入哈希表。</li></ul></li></ol><p>这种方法只需遍历数组一次，时间复杂度为 O(n)，空间复杂度也为 O(n)。</p><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.HashMap;<br><span class="hljs-keyword">import</span> java.util.Map;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] twoSum(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> target) &#123;<br>        <span class="hljs-comment">// 创建一个哈希表来存储数值和对应的索引</span><br>        Map&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        <br>        <span class="hljs-comment">// 遍历数组</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> target - nums[i];<br>            <br>            <span class="hljs-comment">// 如果哈希表中存在目标值减去当前值的结果，则返回对应的索引</span><br>            <span class="hljs-keyword">if</span> (map.containsKey(tmp)) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] &#123;map.get(tmp), i&#125;;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 否则，将当前值和索引放入哈希表</span><br>                map.put(nums[i], i);<br>            &#125;<br>        &#125;<br>        <br>        <span class="hljs-comment">// 如果没有找到合适的数对，返回空数组（可以根据需求修改）</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] &#123;&#125;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul><li><p><strong>时间复杂度</strong>：O(n)</p><ul><li>因为只需要遍历数组一次，每次查找哈希表的复杂度为 O(1)，总时间复杂度为 O(n)。</li></ul></li><li><p><strong>空间复杂度</strong>：O(n)</p><ul><li>在最坏情况下，哈希表中存储了 n 个元素，因此空间复杂度为 O(n)。</li></ul></li></ul><br><br><h1 id="2-两数相加"><a href="#2-两数相加" class="headerlink" title="2. 两数相加"></a>2. 两数相加</h1><p><a href="https://leetcode.cn/problems/add-two-numbers/description/">https://leetcode.cn/problems/add-two-numbers/description/</a></p><h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><ol><li>创建一个虚拟头节点 <code>dummy</code> 以便于处理结果链表。</li><li>使用指针 <code>pre</code> 指向当前处理的节点，初始化为 <code>dummy</code>。</li><li>初始化进位 <code>carry</code> 为 0。</li><li>遍历两个链表，直到都为空：<ul><li>取出当前节点的值 <code>x</code> 和 <code>y</code>，如果链表已经结束则为 0。</li><li>计算当前位的和 <code>sum = x + y + carry</code>。</li><li>更新进位 <code>carry = sum / 10</code>。</li><li>当前位的值为 <code>sum % 10</code>。</li><li>将当前节点的结果添加到结果链表中。</li><li>移动指针到下一个节点。</li></ul></li><li>最后，如果还有进位，添加到结果链表中。</li><li>返回结果链表的下一个节点，即 <code>dummy.next</code>。</li></ol><h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * public class ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode next;</span><br><span class="hljs-comment"> *     ListNode() &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> ListNode <span class="hljs-title function_">addTwoNumbers</span><span class="hljs-params">(ListNode l1, ListNode l2)</span> &#123;<br>        <span class="hljs-type">ListNode</span> <span class="hljs-variable">dummy</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>();<br>        <span class="hljs-type">ListNode</span> <span class="hljs-variable">pre</span> <span class="hljs-operator">=</span> dummy;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">carry</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">while</span> (l1 != <span class="hljs-literal">null</span> || l2 != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> (l1 != <span class="hljs-literal">null</span>) ? l1.val : <span class="hljs-number">0</span>;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">y</span> <span class="hljs-operator">=</span> (l2 != <span class="hljs-literal">null</span>) ? l2.val : <span class="hljs-number">0</span>;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> x + y + carry;<br><br>            carry = sum / <span class="hljs-number">10</span>;<br>            sum = sum % <span class="hljs-number">10</span>;<br><br>            pre.next = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(sum);<br>            pre = pre.next;<br><br>            <span class="hljs-keyword">if</span> (l1 != <span class="hljs-literal">null</span>) l1 = l1.next;<br>            <span class="hljs-keyword">if</span> (l2 != <span class="hljs-literal">null</span>) l2 = l2.next;<br>        &#125;<br><br>        <span class="hljs-comment">// 处理最高位的进位</span><br>        <span class="hljs-keyword">if</span> (carry &gt; <span class="hljs-number">0</span>) &#123;<br>            pre.next = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(carry);<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> dummy.next;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul><li><strong>时间复杂度</strong>：O(n)，其中 n 是较长链表的长度。需要遍历一次每个节点。</li><li><strong>空间复杂度</strong>：O(n)，用于存储结果链表。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hot100</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>themes</title>
+    <link href="/2024/07/26/themes/"/>
+    <url>/2024/07/26/themes/</url>
+    
+    <content type="html"><![CDATA[<h1 id="fluid"><a href="#fluid" class="headerlink" title="fluid"></a>fluid</h1><h2 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h2><p><img src="/2024/07/26/themes/fluid.png"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>themes</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>learn_markdown</title>
     <link href="/2024/07/23/learn-markdown/"/>
     <url>/2024/07/23/learn-markdown/</url>
     
-    <content type="html"><![CDATA[<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><h4 id="4"><a href="#4" class="headerlink" title="4"></a>4</h4><h5 id="5"><a href="#5" class="headerlink" title="5"></a>5</h5><h6 id="6"><a href="#6" class="headerlink" title="6"></a>6</h6><h2 id="images"><a href="#images" class="headerlink" title="images"></a>images</h2><p><img src="/2024/07/23/learn-markdown/pdx1.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>使用#的数量定义标题的级别，#后面与标题之间有一个空格</p><h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><h4 id="4"><a href="#4" class="headerlink" title="4"></a>4</h4><h5 id="5"><a href="#5" class="headerlink" title="5"></a>5</h5><h6 id="6"><a href="#6" class="headerlink" title="6"></a>6</h6><h1 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h1><p>段落与段落之间用空白行分割</p><p>我看见他戴着黑布小帽，穿着黑布大马褂，深青布棉袍，蹒跚地走到铁道边，慢慢探身下去，尚不大难。可是他穿过铁道，要爬上那边月台，就不容易了。他用两手攀着上面，两脚再向上缩；他肥胖的身子向左微倾，显出努力的样子。这时我看见他的背影，我的泪很快地流下来了。我赶紧拭干了泪，怕他看见，也怕别人看见。我再向外看时，他已抱了朱红的橘子望回走了。过铁道时，他先将橘子散放在地上，自己慢慢爬下，再抱起橘子走。到这边时，我赶紧去搀他。他和我走到车上，将橘子一股脑儿放在我的皮大衣上。于是扑扑衣上的泥土，心里很轻松似的，过一会说，“我走了；到那边来信！”我望着他走出去。他走了几步，回过头看见我，说，“进去吧，里边没人。”等他的背影混入来来往往的人里，再找不着了，我便进来坐下，我的眼泪又来了。 — 摘自朱自清的《背影》</p><h2 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h2><p>静夜思<br>李白<br>床前明月光，疑是地上霜。<br>举头望明月，低头思故乡。</p><h1 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h1><p>你__好__   <strong>你好</strong><br><strong>hello</strong> hello<br>你也<strong>好</strong></p><h1 id="images"><a href="#images" class="headerlink" title="images"></a>images</h1><p>图片放置格式</p><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss">!<span class="hljs-selector-attr">[]</span>(png.jpg)<br></code></pre></td></tr></table></figure><p><img src="/2024/07/23/learn-markdown/pdx1.jpg"></p>]]></content>
     
     
+    <categories>
+      
+      <category>学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>markdown</tag>
+      
+    </tags>
     
   </entry>
   
