@@ -1,0 +1,783 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/hmbb.png">
+  <link rel="icon" href="/img/hmbb.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="aguoblue">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="17. 电话号码的字母组合https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;letter-combinations-of-a-phone-number&#x2F;description&#x2F; 题目描述给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按任意顺序返回。 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。 解题思路我们可以使用回溯算法来解决这个问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hot100-3">
+<meta property="og:url" content="https://aguoblue.github.io/2024/07/30/hot100-3/index.html">
+<meta property="og:site_name" content="2024">
+<meta property="og:description" content="17. 电话号码的字母组合https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;letter-combinations-of-a-phone-number&#x2F;description&#x2F; 题目描述给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按任意顺序返回。 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。 解题思路我们可以使用回溯算法来解决这个问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-30T01:41:20.000Z">
+<meta property="article:modified_time" content="2024-07-30T05:07:01.017Z">
+<meta property="article:author" content="aguoblue">
+<meta property="article:tag" content="hot100">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>hot100-3 - 2024</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"aguoblue.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>aguoblue</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="hot100-3"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-30 09:41" pubdate>
+          2024年7月30日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">hot100-3</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="17-电话号码的字母组合"><a href="#17-电话号码的字母组合" class="headerlink" title="17. 电话号码的字母组合"></a>17. 电话号码的字母组合</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/">https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按任意顺序返回。</p>
+<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>我们可以使用回溯算法来解决这个问题。回溯算法能够在构建解决方案的过程中动态地撤销已经做出的选择，从而可以探索所有可能的组合。</p>
+<h3 id="详细步骤"><a href="#详细步骤" class="headerlink" title="详细步骤"></a>详细步骤</h3><ol>
+<li>创建一个映射数组 <code>lettermap</code>，将数字与其对应的字母关联起来。</li>
+<li>初始化结果列表 <code>ans</code> 和一个用于构建组合的 <code>StringBuilder</code> 对象 <code>sb</code>。</li>
+<li>如果输入的字符串为空，直接返回空列表。</li>
+<li>使用回溯函数 <code>backtracking</code> 来生成所有可能的组合：<ul>
+<li>如果当前索引等于输入字符串的长度，表示已经生成了一个完整的组合，将其加入结果列表。</li>
+<li>否则，获取当前数字对应的字母集，然后依次尝试每个字母，并递归调用 <code>backtracking</code> 生成下一层的组合。</li>
+<li>在递归返回之前，撤销上一步的选择，即从 <code>sb</code> 中删除最后一个字符。</li>
+</ul>
+</li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">private</span> String[] lettermap =&#123;<br>        <span class="hljs-string">&quot; &quot;</span>,    <span class="hljs-comment">// 0</span><br>        <span class="hljs-string">&quot;&quot;</span>,     <span class="hljs-comment">// 1</span><br>        <span class="hljs-string">&quot;abc&quot;</span>,  <span class="hljs-comment">// 2</span><br>        <span class="hljs-string">&quot;def&quot;</span>,  <span class="hljs-comment">// 3</span><br>        <span class="hljs-string">&quot;ghi&quot;</span>,  <span class="hljs-comment">// 4</span><br>        <span class="hljs-string">&quot;jkl&quot;</span>,  <span class="hljs-comment">// 5</span><br>        <span class="hljs-string">&quot;mno&quot;</span>,  <span class="hljs-comment">// 6</span><br>        <span class="hljs-string">&quot;pqrs&quot;</span>, <span class="hljs-comment">// 7</span><br>        <span class="hljs-string">&quot;tuv&quot;</span>,  <span class="hljs-comment">// 8</span><br>        <span class="hljs-string">&quot;wxyz&quot;</span>  <span class="hljs-comment">// 9</span><br>    &#125;;<br><br>    <span class="hljs-keyword">private</span> StringBuilder sb;<br>    <span class="hljs-keyword">private</span> List&lt;String&gt; ans;<br><br>    <span class="hljs-keyword">public</span> List&lt;String&gt; <span class="hljs-title function_">letterCombinations</span><span class="hljs-params">(String digits)</span> &#123;<br>        <span class="hljs-comment">// 如果输入为空，返回空列表</span><br>        <span class="hljs-keyword">if</span> (digits == <span class="hljs-literal">null</span> || digits.length() == <span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        <span class="hljs-comment">// 初始化结果列表和 StringBuilder</span><br>        ans = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        sb = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>        <span class="hljs-comment">// 开始回溯</span><br>        backtracking(<span class="hljs-number">0</span>, digits);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">backtracking</span><span class="hljs-params">(<span class="hljs-type">int</span> startIndex, String digits)</span> &#123;<br>        <span class="hljs-comment">// 如果当前索引等于输入字符串的长度，添加组合到结果列表</span><br>        <span class="hljs-keyword">if</span> (startIndex == digits.length()) &#123;<br>            ans.add(sb.toString());<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-comment">// 获取当前数字对应的字母集</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> digits.charAt(startIndex) - <span class="hljs-string">&#x27;0&#x27;</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; lettermap[tmp].length(); i++) &#123;<br>            <span class="hljs-comment">// 选择一个字母</span><br>            sb.append(lettermap[tmp].charAt(i));<br>            <span class="hljs-comment">// 递归生成下一层的组合</span><br>            backtracking(startIndex + <span class="hljs-number">1</span>, digits);<br>            <span class="hljs-comment">// 撤销上一步选择</span><br>            sb.deleteCharAt(sb.length() - <span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li><strong>时间复杂度</strong>: O(3^n * 4^m)，其中 n 是对应 3 个字母的数字（如 2, 3, 4, 5, 6, 8）出现的次数，m 是对应 4 个字母的数字（如 7, 9）出现的次数。每次递归调用都会尝试所有可能的字母组合。</li>
+<li><strong>空间复杂度</strong>: O(n)，其中 n 是输入字符串的长度。递归调用的深度最多为 n，另外需要 O(n) 的空间来存储临时的组合结果。</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>回溯算法在生成组合时，先尝试一个字母，再递归生成下一个字母的组合，最终形成完整的字母组合。</li>
+<li>使用 <code>StringBuilder</code> 来动态构建字符串，并在递归返回时撤销上一步的选择，可以有效减少字符串拼接的开销。</li>
+<li>输入为空字符串时，直接返回空列表，避免不必要的计算。</li>
+</ul>
+<h1 id="19-删除链表的倒数第-N-个结点"><a href="#19-删除链表的倒数第-N-个结点" class="headerlink" title="19. 删除链表的倒数第 N 个结点"></a>19. 删除链表的倒数第 N 个结点</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/">https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/</a></p>
+<h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个链表，删除链表的倒数第 <code>n</code> 个结点，并且返回链表的头结点。</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>为了删除链表的倒数第 <code>n</code> 个结点，我们可以使用快慢指针方法。</p>
+<p>使用一个哨兵节点 <code>dummy</code>，指向链表的头节点。这样，即使删除头节点也能方便处理。<br>初始化两个指针 <code>slow</code> 和 <code>fast</code>，都指向哨兵节点。先让快指针 <code>fast</code> 走 <code>n</code> 步。然后同时移动快指针和慢指针，直到快指针到达链表的末尾。此时，慢指针 <code>slow</code> 的下一个节点就是要删除的节点。</p>
+<h3 id="详细步骤-1"><a href="#详细步骤-1" class="headerlink" title="详细步骤"></a>详细步骤</h3><ol>
+<li>创建一个哨兵节点 <code>dummy</code>，并指向链表的头节点 <code>head</code>。</li>
+<li>初始化两个指针 <code>slow</code> 和 <code>fast</code>，都指向哨兵节点 <code>dummy</code>。</li>
+<li>让快指针 <code>fast</code> 先走 <code>n</code> 步。</li>
+<li>继续同时移动 <code>slow</code> 和 <code>fast</code>，直到 <code>fast</code> 的下一个节点为空。</li>
+<li>此时，<code>slow</code> 的下一个节点就是要删除的节点，将 <code>slow</code> 的下一个节点指向其下下个节点。</li>
+<li>返回 <code>dummy</code> 的下一个节点作为新的头节点。</li>
+</ol>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * public class ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode next;</span><br><span class="hljs-comment"> *     ListNode() &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> ListNode <span class="hljs-title function_">removeNthFromEnd</span><span class="hljs-params">(ListNode head, <span class="hljs-type">int</span> n)</span> &#123;<br>        <span class="hljs-comment">// 创建哨兵节点并指向头节点</span><br>        <span class="hljs-type">ListNode</span> <span class="hljs-variable">dummy</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(<span class="hljs-number">0</span>, head);<br>        <span class="hljs-comment">// 初始化快慢指针</span><br>        <span class="hljs-type">ListNode</span> <span class="hljs-variable">slow</span> <span class="hljs-operator">=</span> dummy, fast = dummy;<br>        <br>        <span class="hljs-comment">// 快指针先走 n 步</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>            fast = fast.next;<br>        &#125;<br>        <br>        <span class="hljs-comment">// 同时移动快慢指针，直到快指针到达链表末尾</span><br>        <span class="hljs-keyword">while</span> (fast.next != <span class="hljs-literal">null</span>) &#123;<br>            fast = fast.next;<br>            slow = slow.next;<br>        &#125;<br>        <br>        <span class="hljs-comment">// 删除慢指针的下一个节点</span><br>        slow.next = slow.next.next;<br>        <br>        <span class="hljs-comment">// 返回新的头节点</span><br>        <span class="hljs-keyword">return</span> dummy.next;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li><strong>时间复杂度</strong>: O(L)，其中 L 是链表的长度。两个指针总共遍历了链表两次。</li>
+<li><strong>空间复杂度</strong>: O(1)，只使用了常数级别的额外空间。</li>
+</ul>
+<h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>使用哨兵节点可以方便处理删除头节点的情况，避免单独处理这种特殊情况。</li>
+<li>快指针先走 <code>n</code> 步，确保了在快指针到达链表末尾时，慢指针正好在需要删除的节点前一个位置。</li>
+<li>如果链表为空或 <code>n</code> 超过链表长度，需要提前进行检查。</li>
+</ul>
+<h1 id="20-有效的括号"><a href="#20-有效的括号" class="headerlink" title="20. 有效的括号"></a>20. 有效的括号</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-parentheses/description/">https://leetcode.cn/problems/valid-parentheses/description/</a></p>
+<h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串 <code>s</code>，判断字符串是否有效。</p>
+<p>有效字符串需满足：</p>
+<ol>
+<li>左括号必须用相同类型的右括号闭合。</li>
+<li>左括号必须以正确的顺序闭合。</li>
+<li>每个右括号都有一个对应的相同类型的左括号。</li>
+</ol>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>为了判断一个字符串中的括号是否有效，我们可以使用栈来辅助匹配括号。具体步骤如下：</p>
+<ol>
+<li>遍历字符串 <code>s</code> 中的每一个字符：<ul>
+<li>如果是左括号，将其压入栈中。</li>
+<li>如果是右括号，检查栈是否为空。如果栈为空，说明没有匹配的左括号，字符串无效。否则，弹出栈顶元素，并检查是否与当前右括号匹配。</li>
+</ul>
+</li>
+<li>遍历完成后，如果栈为空，说明所有的左括号都匹配了相应的右括号，字符串有效。否则，字符串无效。</li>
+</ol>
+<h3 id="详细步骤-2"><a href="#详细步骤-2" class="headerlink" title="详细步骤"></a>详细步骤</h3><ol>
+<li>创建一个栈来存储左括号。</li>
+<li>遍历字符串 <code>s</code>，对于每个字符：<ul>
+<li>如果是左括号，将其压入栈中。</li>
+<li>如果是右括号，检查栈是否为空。如果为空，返回 <code>false</code>。否则，弹出栈顶元素，并检查是否与当前右括号匹配。如果不匹配，返回 <code>false</code>。</li>
+</ul>
+</li>
+<li>遍历完成后，检查栈是否为空。如果为空，返回 <code>true</code>，否则返回 <code>false</code>。</li>
+</ol>
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isValid</span><span class="hljs-params">(String s)</span> &#123;<br>        <span class="hljs-comment">// 栈用于存储左括号</span><br>        <span class="hljs-type">char</span>[] stack = <span class="hljs-keyword">new</span> <span class="hljs-title class_">char</span>[s.length()];<br>        <span class="hljs-type">int</span> <span class="hljs-variable">top</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br>        <span class="hljs-comment">// 遍历字符串中的每个字符</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; s.length(); i++) &#123;<br>            <span class="hljs-type">char</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> s.charAt(i);<br>            <span class="hljs-comment">// 如果是左括号，压入栈中</span><br>            <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;(&#x27;</span> || c == <span class="hljs-string">&#x27;[&#x27;</span> || c == <span class="hljs-string">&#x27;&#123;&#x27;</span>) &#123;<br>                stack[top++] = c;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 如果是右括号，检查栈是否为空或栈顶是否匹配</span><br>                <span class="hljs-keyword">if</span> (top == <span class="hljs-number">0</span> || stack[top - <span class="hljs-number">1</span>] != getMatchingLeftBracket(c)) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>                &#125;<br>                top--; <span class="hljs-comment">// 匹配成功，弹出栈顶元素</span><br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 栈为空，说明所有括号匹配成功</span><br>        <span class="hljs-keyword">return</span> top == <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 返回对应的左括号</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">char</span> <span class="hljs-title function_">getMatchingLeftBracket</span><span class="hljs-params">(<span class="hljs-type">char</span> c)</span> &#123;<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;)&#x27;</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;(&#x27;</span>;<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;]&#x27;</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;[&#x27;</span>;<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;&#125;&#x27;</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#123;&#x27;</span>;<br>        <span class="hljs-keyword">return</span> c;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析-2"><a href="#复杂度分析-2" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li><strong>时间复杂度</strong>: O(n)，其中 n 是字符串的长度。我们只遍历一次字符串。</li>
+<li><strong>空间复杂度</strong>: O(n)，其中 n 是字符串的长度。最坏情况下栈中会存储所有的左括号。</li>
+</ul>
+<h3 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>栈顶元素和当前右括号匹配时，弹出栈顶元素。</li>
+<li>如果栈为空或栈顶元素不匹配，直接返回 <code>false</code>。</li>
+<li>遍历结束后，检查栈是否为空，以判断所有的括号是否都匹配成功。</li>
+</ul>
+<h1 id="21-合并两个有序链表"><a href="#21-合并两个有序链表" class="headerlink" title="21. 合并两个有序链表"></a>21. 合并两个有序链表</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-sorted-lists/description/">https://leetcode.cn/problems/merge-two-sorted-lists/description/</a></p>
+<h3 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h3><p>将两个升序链表合并为一个新的升序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。</p>
+<h3 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h3><p>为了合并两个升序链表，我们可以使用双指针方法，同时遍历两个链表，将较小的节点依次加入到新的链表中。为了简化操作，我们可以使用一个哨兵节点来指向新链表的头节点。</p>
+<h3 id="详细步骤-3"><a href="#详细步骤-3" class="headerlink" title="详细步骤"></a>详细步骤</h3><ol>
+<li>创建一个哨兵节点 <code>dummy</code>，并初始化一个指针 <code>pre</code> 指向哨兵节点。</li>
+<li>同时遍历两个链表 <code>list1</code> 和 <code>list2</code>：<ul>
+<li>比较当前节点的值，将较小的节点加入到新链表中，并移动指针到下一个节点。</li>
+<li>更新 <code>pre</code> 指向新链表的最新节点。</li>
+</ul>
+</li>
+<li>当其中一个链表遍历完后，将另一个链表的剩余部分直接接到新链表的末尾。</li>
+<li>返回哨兵节点的下一个节点，即新的头节点。</li>
+</ol>
+<h3 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * public class ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode next;</span><br><span class="hljs-comment"> *     ListNode() &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int val) &#123; this.val = val; this.next = next; &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> ListNode <span class="hljs-title function_">mergeTwoLists</span><span class="hljs-params">(ListNode list1, ListNode list2)</span> &#123;<br>        <span class="hljs-comment">// 创建哨兵节点</span><br>        <span class="hljs-type">ListNode</span> <span class="hljs-variable">dummy</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>();<br>        <span class="hljs-type">ListNode</span> <span class="hljs-variable">pre</span> <span class="hljs-operator">=</span> dummy;<br><br>        <span class="hljs-comment">// 同时遍历两个链表</span><br>        <span class="hljs-keyword">while</span> (list1 != <span class="hljs-literal">null</span> &amp;&amp; list2 != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">if</span> (list1.val &lt; list2.val) &#123;<br>                pre.next = list1;<br>                list1 = list1.next;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                pre.next = list2;<br>                list2 = list2.next;<br>            &#125;<br>            pre = pre.next;<br>        &#125;<br><br>        <span class="hljs-comment">// 将剩余的链表部分接到新链表的末尾</span><br>        pre.next = (list1 == <span class="hljs-literal">null</span>) ? list2 : list1;<br><br>        <span class="hljs-keyword">return</span> dummy.next;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析-3"><a href="#复杂度分析-3" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li><strong>时间复杂度</strong>: O(n + m)，其中 n 和 m 分别是两个链表的长度。我们需要遍历两个链表中的每个节点。</li>
+<li><strong>空间复杂度</strong>: O(1)，我们只使用了常数级别的额外空间。</li>
+</ul>
+<h3 id="注意事项-3"><a href="#注意事项-3" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>使用哨兵节点可以简化操作，避免处理头节点为空的特殊情况。</li>
+<li>在比较节点值时，需要确保 <code>pre</code> 指向的是新链表的最新节点，并更新 <code>pre</code>。</li>
+<li>在其中一个链表遍历完后，直接将另一个链表的剩余部分接到新链表末尾即可。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/leetcode/" class="category-chain-item">leetcode</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/hot100/" class="print-no-link">#hot100</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>hot100-3</div>
+      <div>https://aguoblue.github.io/2024/07/30/hot100-3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>aguoblue</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/30/hot100-4/" title="hot100-4">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">hot100-4</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/28/hot100-2/" title="hot100-2">
+                        <span class="hidden-mobile">hot100-2</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        pv 
+        <span id="busuanzi_value_site_pv"></span>
+         
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        uv 
+        <span id="busuanzi_value_site_uv"></span>
+         
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
