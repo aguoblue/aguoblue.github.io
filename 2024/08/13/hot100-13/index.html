@@ -24,7 +24,7 @@
 <meta property="og:description" content="139. 单词拆分https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;word-break&#x2F;description&#x2F; 题目描述给你一个字符串 s 和一个字符串列表 wordDict 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 s，则返回 true。注意，不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。 解题思路我们可以使用动态规划来解决这个问题。定义一个布尔数组">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-13T13:02:08.000Z">
-<meta property="article:modified_time" content="2024-08-13T13:55:12.503Z">
+<meta property="article:modified_time" content="2024-08-14T07:34:03.295Z">
 <meta property="article:author" content="aguoblue">
 <meta property="article:tag" content="hot100">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2.8k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          16 分钟
+          24 分钟
         
       </span>
     
@@ -349,6 +349,50 @@
 <li>在代码实现时，必须先判断是否存在环，如果不存在环直接返回 <code>null</code>，否则继续查找入环的节点。</li>
 <li>快慢指针相遇后，将 <code>slow</code> 指针重新指向头节点，并与 <code>fast</code> 指针一起移动，直到它们再次相遇，这个相遇点就是入环的第一个节点。</li>
 </ul>
+<h1 id="146-LRU-缓存"><a href="#146-LRU-缓存" class="headerlink" title="146. LRU 缓存"></a>146. LRU 缓存</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lru-cache/description/">https://leetcode.cn/problems/lru-cache/description/</a></p>
+<h3 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h3><p>设计并实现一个满足 LRU (最近最少使用) 缓存约束的数据结构。实现 LRUCache 类：</p>
+<ul>
+<li><code>LRUCache(int capacity)</code> 以正整数作为容量 <code>capacity</code> 初始化 LRU 缓存。</li>
+<li><code>int get(int key)</code> 如果关键字 <code>key</code> 存在于缓存中，则返回关键字的值，否则返回 <code>-1</code>。</li>
+<li><code>void put(int key, int value)</code> 如果关键字 <code>key</code> 已经存在，则变更其数据值 <code>value</code>；如果不存在，则向缓存中插入该组 <code>key-value</code>。如果插入操作导致关键字数量超过 <code>capacity</code>，则应该逐出最久未使用的关键字。</li>
+</ul>
+<p>函数 <code>get</code> 和 <code>put</code> 必须以 O(1) 的平均时间复杂度运行。</p>
+<h3 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h3><p>LRU 缓存要求我们以 O(1) 的时间复杂度实现数据的存取和更新。要实现这个要求，可以结合使用 <strong>哈希表</strong> 和 <strong>双向链表</strong>。</p>
+<ul>
+<li><strong>哈希表</strong> 用于在 O(1) 时间复杂度内查找元素。</li>
+<li><strong>双向链表</strong> 用于记录元素的访问顺序，以便在容量超出时，可以快速删除最久未使用的元素。</li>
+</ul>
+<h4 id="具体步骤-2"><a href="#具体步骤-2" class="headerlink" title="具体步骤"></a>具体步骤</h4><ol>
+<li><p><strong>数据结构</strong>：</p>
+<ul>
+<li>一个哈希表 <code>map</code>，用于存储 <code>key</code> 到 <code>双向链表节点</code> 的映射。</li>
+<li>一个双向链表，链表头部存储最近使用的元素，链表尾部存储最久未使用的元素。</li>
+</ul>
+</li>
+<li><p><strong><code>get</code> 操作</strong>：</p>
+<ul>
+<li>如果 <code>key</code> 存在于 <code>map</code> 中，返回 <code>key</code> 对应的值，并将该节点移动到链表头部，表示其为最近使用的。</li>
+<li>如果 <code>key</code> 不存在，返回 <code>-1</code>。</li>
+</ul>
+</li>
+<li><p><strong><code>put</code> 操作</strong>：</p>
+<ul>
+<li>如果 <code>key</code> 已经存在，更新其值并将该节点移动到链表头部。</li>
+<li>如果 <code>key</code> 不存在，插入新节点到链表头部，并将 <code>key</code> 和节点映射存储到 <code>map</code> 中。如果插入操作导致超出容量，则删除链表尾部的节点（即最久未使用的节点），并从 <code>map</code> 中删除相应的 <code>key</code>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">LRUCache</span> &#123;<br>    <span class="hljs-comment">// 定义双向链表节点类</span><br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">LinkedNode</span> &#123;<br>        <span class="hljs-type">int</span> key;<br>        <span class="hljs-type">int</span> val;<br>        LinkedNode pre;<br>        LinkedNode next;<br>        LinkedNode() &#123;&#125;<br>        LinkedNode(<span class="hljs-type">int</span> key_, <span class="hljs-type">int</span> val_) &#123;<br>            key = key_;<br>            val = val_;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> capacity;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> size;<br>    <span class="hljs-keyword">private</span> LinkedNode head;<br>    <span class="hljs-keyword">private</span> LinkedNode tail;<br>    <span class="hljs-keyword">private</span> Map&lt;Integer, LinkedNode&gt; map;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">LRUCache</span><span class="hljs-params">(<span class="hljs-type">int</span> capacity)</span> &#123;<br>        <span class="hljs-built_in">this</span>.capacity = capacity;<br>        <span class="hljs-built_in">this</span>.size = <span class="hljs-number">0</span>;<br>        head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedNode</span>();<br>        tail = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedNode</span>();<br>        head.next = tail;<br>        tail.pre = head;<br>        map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>        <span class="hljs-keyword">if</span> (map.containsKey(key)) &#123;<br>            <span class="hljs-type">LinkedNode</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> map.get(key);<br>            moveToHead(node);<br>            <span class="hljs-keyword">return</span> node.val;<br>        &#125;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> value)</span> &#123;<br>        <span class="hljs-keyword">if</span> (map.containsKey(key)) &#123;<br>            <span class="hljs-type">LinkedNode</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> map.get(key);<br>            node.val = value;<br>            moveToHead(node);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-type">LinkedNode</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedNode</span>(key, value);<br>            map.put(key, node);<br>            addToHead(node);<br>            size++;<br>            <span class="hljs-keyword">if</span> (size &gt; capacity) &#123;<br>                <span class="hljs-type">LinkedNode</span> <span class="hljs-variable">tailNode</span> <span class="hljs-operator">=</span> removeTail();<br>                map.remove(tailNode.key);<br>                size--;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 辅助方法：将节点移动到链表头部</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">moveToHead</span><span class="hljs-params">(LinkedNode node)</span> &#123;<br>        removeNode(node);<br>        addToHead(node);<br>    &#125;<br><br>    <span class="hljs-comment">// 辅助方法：从链表中移除节点</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">removeNode</span><span class="hljs-params">(LinkedNode node)</span> &#123;<br>        node.pre.next = node.next;<br>        node.next.pre = node.pre;<br>    &#125;<br><br>    <span class="hljs-comment">// 辅助方法：将节点添加到链表头部</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addToHead</span><span class="hljs-params">(LinkedNode node)</span> &#123;<br>        node.next = head.next;<br>        node.pre = head;<br>        head.next.pre = node;<br>        head.next = node;<br>    &#125;<br><br>    <span class="hljs-comment">// 辅助方法：移除链表尾部节点</span><br>    <span class="hljs-keyword">private</span> LinkedNode <span class="hljs-title function_">removeTail</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">LinkedNode</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> tail.pre;<br>        removeNode(node);<br>        <span class="hljs-keyword">return</span> node;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析-3"><a href="#复杂度分析-3" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li><strong>时间复杂度</strong>: O(1) 对于 <code>get</code> 和 <code>put</code> 操作，我们都只进行哈希表的查找和双向链表的插入、删除操作，每个操作都是 O(1)。</li>
+<li><strong>空间复杂度</strong>: O(capacity)，存储哈希表和双向链表所需的空间。</li>
+</ul>
+<h3 id="优化与注意事项"><a href="#优化与注意事项" class="headerlink" title="优化与注意事项"></a>优化与注意事项</h3><ul>
+<li><strong>优化点</strong>: 在 <code>get</code> 和 <code>put</code> 操作中，我们都通过调用 <code>moveToHead</code> 方法来将节点移动到链表头部，从而保持最近使用的元素在头部。这种方式简化了代码逻辑。</li>
+<li><strong>边界处理</strong>: 初始化时，<code>head</code> 和 <code>tail</code> 是哨兵节点，可以避免在处理链表时的边界条件判断（如 <code>null</code> 检查）。</li>
+<li><strong>容量管理</strong>: 每次插入新节点后，需要检查当前容量是否超出限制，如果超出则删除链表尾部节点以保证容量。</li>
+</ul>
 
                 
               </div>
@@ -438,6 +482,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/08/14/hot100-14/" title="hot100-14">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">hot100-14</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
