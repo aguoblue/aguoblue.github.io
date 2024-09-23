@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>学习代码随想录</title>
+    <link href="/2024/09/04/%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/"/>
+    <url>/2024/09/04/%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<p>二分查找</p><p>搜索插入位置<br>在排序数组中查找元素的第一个和最后一个位置<br>x 的平方根<br>有效的完全平方数  </p><p>双指针  </p><p>移除元素<br>删除有序数组中的重复项<br>移动零<br>比较含退格的字符串<br>有序数组的平方<br>长度最小的子数组<br>水果成篮<br>最小覆盖子串  </p><p>最小滑窗模板：给定数组 nums，定义滑窗的左右边界 i, j，求满足某个条件的滑窗的最小长度。</p><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver"><span class="hljs-keyword">while</span> j &lt; <span class="hljs-built_in">len</span>(nums):<br>    判断[i, j]是否满足条件<br>    <span class="hljs-keyword">while</span> 满足条件：<br>        不断更新结果(注意在<span class="hljs-keyword">while</span>内更新！)<br>        i += <span class="hljs-number">1</span> （最大程度的压缩i，使得滑窗尽可能的小）<br>    j += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure><p>最大滑窗模板：给定数组 nums，定义滑窗的左右边界 i, j，求满足某个条件的滑窗的最大长度。</p><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver"><span class="hljs-keyword">while</span> j &lt; <span class="hljs-built_in">len</span>(nums):<br>    判断[i, j]是否满足条件<br>    <span class="hljs-keyword">while</span> 不满足条件：<br>        i += <span class="hljs-number">1</span> （最保守的压缩i，一旦满足条件了就退出压缩i的过程，使得滑窗尽可能的大）<br>    不断更新结果（注意在<span class="hljs-keyword">while</span>外更新！）<br>    j += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure><p>模拟  </p><p>螺旋矩阵<br>螺旋矩阵II<br>顺时针打印矩阵  </p><p>前缀和  </p><p>区间和<br>开发商购买土地  </p><p>链表  </p><p>移除链表元素<br>设计链表<br>两两交换链表中的节点<br>删除链表的倒数第N个节点<br>链表相交<br>环形链表II  </p><p>哈希表</p><p>有效的字母异位词<br>两个数组的交集<br>快乐数<br>两数之和<br>四数相加II<br>赎金信<br>三数之和<br>四数之和  循环 + 双指针 + 去重 + 剪枝  </p><p>字符串 </p><p>反转字符串<br>反转字符串II<br>替换数字<br>反转字符串中的单词<br>右旋字符串<br>实现 strStr() | 找出字符串中第一个匹配项的下标 KMP<br>重复的子字符串  </p><p>栈和队列</p><p>用栈实现队列<br>用队列实现栈<br>有效的括号<br>删除字符串中的所有相邻重复项<br>逆波兰表达式求值<br>滑动窗口最大值    单调递减栈，同时O(1)取栈底元素<br>前 K 个高频元素  优先队列 + 容量为k的小顶堆<br>简化路径     </p><p>二叉树</p><p>二叉树的递归遍历 前 中 后 + 递归 + 迭代<br>二叉树的层序遍历<br>翻转二叉树<br>对称二叉树、相同的树、另一颗树的子树<br>二叉树的最大深度<br>完全二叉树  迭代 | 二分<br>平衡二叉树<br>左叶子节点之和<br>找树左下角的值<br>路径总和  路径总和ii   </p><p>搜索插入位置<br><a href="https://leetcode.cn/problems/search-insert-position/">https://leetcode.cn/problems/search-insert-position/</a><br>在排序数组中查找元素的第一个和最后一个位置<br><a href="https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/description/">https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/description/</a><br>x 的平方根<br><a href="https://leetcode.cn/problems/sqrtx/description/">https://leetcode.cn/problems/sqrtx/description/</a><br>有效的完全平方数<br><a href="https://leetcode.cn/problems/valid-perfect-square/">https://leetcode.cn/problems/valid-perfect-square/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>代码随想录题单</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>docker部署redis</title>
     <link href="/2024/08/20/docker%E9%83%A8%E7%BD%B2redis/"/>
     <url>/2024/08/20/docker%E9%83%A8%E7%BD%B2redis/</url>
